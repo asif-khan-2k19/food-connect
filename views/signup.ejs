@@ -1,0 +1,18 @@
+<% include ./partials/header.ejs %>
+<div class="container">
+    <form  action="/register"  method="post">
+        <h1>Signup</h1>
+        <p>Username</p>
+        <input type="text" name="username" class="input-field" placeholder="Username" spellcheck="false" autocomplete="off" >
+        
+        <p>Email</p>
+        <input type="email" name="email" class="input-field" placeholder="Email" spellcheck="false" autocomplete="off">
+
+        <p>Password</p>
+        <input type="password" name="password" class="input-field"  placeholder="Password">
+        
+        <button type="submit" class="submit-btn" style=" margin-top: 20px;">Sign in</button>
+        <p style="font-size: 12px; font-weight: 400; text-align: center; margin-top: 20px;">Already have an account? <a href="/" style=" font-weight: 800;">Log in</a></p>
+    </form>
+</div>
+<% include ./partials/footer.ejs %>
