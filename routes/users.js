@@ -7,7 +7,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/food-connect")
 
 const userSchema = new mongoose.Schema({
   name: {
-    type: String
+    type: String,
   },
   username: {
     type: String
