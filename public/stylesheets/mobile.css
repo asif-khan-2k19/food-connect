@@ -10,8 +10,8 @@
 --red-light : #ef233c;
 --purple: #a95af7;
 --purple-light: #da9cfe;
---primary: var(--red);
---primary-light: var(--red-light);
+--primary: var(--orange);
+--primary-light: var(--orange-light);
 }
 
 *{
