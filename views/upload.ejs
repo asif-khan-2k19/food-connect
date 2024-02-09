@@ -1,9 +1,157 @@
 <% include ./partials/header.ejs %>
 
 <div class="header">
-    <h4>Upload by reeeba</h4>
-    <h4>Upload edited by sarah</h4>
+    <h4>Donate</h4>
 </div>
+<br>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 15px; /* Adjusted padding for both left and right sides */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        h2 {
+            color: orange;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 2px;
+            color: orange;
+            font-size: 14px; /* Changed font size to 14px */
+        }
+
+        .grey-input {
+            border: none;
+            border-bottom: 1px solid #888;
+            color: grey;
+            padding: 4px;
+            box-sizing: border-box;
+            transition: border-bottom 0.3s;
+            font-size: 14px; /* Changed font size to 14px */
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-bottom: 2px solid orange;
+        }
+
+        .grey-input:focus {
+            border-bottom: 2px solid #888;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            color: orange;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid orange;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: orange;
+            border: 2px solid #fff;
+        }
+
+        input[type="checkbox"]:checked::before {
+            content: '\2713';
+            font-size: 14px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        label.checkbox-label {
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 14px; /* Changed font size to 14px */
+        }
+
+        button {
+            background-color: orange;
+            color: #fff;
+            padding: 12px 20px; /* Adjusted padding for a 3D look */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px; /* Changed font size to 14px */
+            width: auto;
+            align-self: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow for a 3D effect */
+        }
+    </style>
+</head>
+<body>
+        <form>
+
+            <label for="pickupLocation">Pickup Location</label>
+            <input type="text" id="pickupLocation" name="pickupLocation" class="grey-input" required>
+
+            <label for="foodItems">Food Item(s)</label>
+            <input type="text" id="foodItems" name="foodItems" class="grey-input" required>
+
+            <label for="pickupDate">Pickup Date</label>
+            <input type="date" id="pickupDate" name="pickupDate" class="grey-input" required>
+
+            <label for="preferredTime">Preferred Time</label>
+            <input type="text" id="preferredTime" name="preferredTime" class="grey-input" required>
+
+            <label for="quantity">How many people can eat the food?</label>
+            <input type="number" id="quantity" name="quantity" class="grey-input" required>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="assuranceCheckbox" name="assuranceCheckbox" required>
+                <label for="assuranceCheckbox" class="checkbox-label">I assure that food quality and hygiene are maintained</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+</body>
+</html>
+
+
+
 
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
