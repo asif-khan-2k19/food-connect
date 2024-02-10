@@ -1,9 +1,38 @@
 <% include ./partials/header.ejs %>
 
 <div class="header">
-    <h4>Upload</h4>
+    <h4>Donate</h4>
 </div>
 
+<div class="container">
+    <div class="scroll-area">
+        <form action="/donatefood" method="post">
+            <p>Pickup location</p>
+            <input type="text" name="pickupLocation" class="edit-profile-input-field" placeholder="Pickup location"  spellcheck="false" autocomplete="off" required>
+            
+            <p>Food items</p>
+            <textarea type="text" name="foodItems" class="edit-profile-input-field" placeholder="1. Food item - Quantity"  spellcheck="false" autocomplete="off" required style="max-width: 250px; min-width: 250px; height: 100px; padding-top: 10px"></textarea>
+            
+            <p>Pickup date</p>
+            <input type="date" name="pickupDate" id="currentDate" class="edit-profile-input-field" placeholder="Pickup date"  spellcheck="false" autocomplete="off" required>
+            
+            <p>Pickup time</p>
+            <input type="time" name="pickupTime" id="currentTime" class="edit-profile-input-field" placeholder="Pickup time"  spellcheck="false" autocomplete="off" required>
+            
+            <p>For how many people?</p>
+            <input type="number" name="foodQuantity" class="edit-profile-input-field" placeholder="For how many people?"  spellcheck="false" autocomplete="off" required>
+            
+            <br><br>
+            
+            <input type="submit" class="submit-btn" value="Donate">
+
+            <br><br><br>
+
+            <!-- <input type="date" name="donationDate" id="donationDate" hidden required> -->
+            <!-- <input type="time" name="donationTime" id="donationTime" hidden required> -->
+        </form>
+    </div>
+</div>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->

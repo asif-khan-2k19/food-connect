@@ -1,0 +1,34 @@
+<% include ./partials/header.ejs %>
+
+<div class="header">
+    <h4>Edit profile</h4>
+</div>
+
+<div class="container">
+    <div class="scroll-area">
+        <form action="/updateprofile" method="post">
+            <p>Username</p>
+            <input type="text" name="username" class="edit-profile-input-field" placeholder="Username" value="<%= user.username %>" spellcheck="false" autocomplete="off" required>
+            
+            <p>Name</p>
+            <input type="text" name="name" class="edit-profile-input-field" placeholder="Name" value="<%= user.name %>" spellcheck="false" autocomplete="off" required>
+            
+            <p>Contact Number</p>
+            <input type="number" name="phone" class="edit-profile-input-field" placeholder="Contact Number" value="<%= user.phone %>" spellcheck="false" autocomplete="off" required>
+            
+            <p>Business</p>
+            <input type="text" name="from" class="edit-profile-input-field" placeholder="eg. restaurant, lawn, cafe, etc" value="<%= user.from %>" spellcheck="false" autocomplete="off" required>
+            
+            <p>Address</p>
+            <input type="text" name="address" class="edit-profile-input-field" placeholder="Address" value="<%= user.address %>" spellcheck="false" autocomplete="off" required>
+            <br><br>
+
+            <input type="submit" class="submit-btn" value="Update">
+            <br><br><br>
+        </form>
+    </div>
+</div>
+<!-- Navigation bar -->
+<% include ./partials/navigation.ejs %>
+<!-- Footer -->
+<% include ./partials/footer.ejs %>
