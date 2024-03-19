@@ -22,8 +22,10 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
-router.get('/home',isLoggedin, function(req, res, next) {
-  res.render('home');
+router.get('/home',isLoggedin,async function(req, res, next) {
+  const user = await userModel.findOne({username: req.session.passport.user})
+  await user.populate('donations');
+  res.render('home', { user: user});
 }); 
 
 router.get('/editprofile', isLoggedin, async function(req, res, next) {
@@ -55,6 +57,7 @@ router.post('/donatefood', isLoggedin, async function(req, res, next){
   console.log(user);
   const food = await foodModel.create({
     pickupLocation: req.body.pickupLocation,
+    date: req.body.uploadDate,
     pickupDate: req.body.pickupDate,
     pickupTime: req.body.pickupTime,
     foodItems: req.body.foodItems,
@@ -71,6 +74,10 @@ router.post('/donatefood', isLoggedin, async function(req, res, next){
 
 router.get('/upload', isLoggedin, function(req, res, next) {
   res.render('upload');
+});
+
+router.get('/reviews', isLoggedin, function(req, res, next) {
+  res.render('reviews');
 });
 
 router.get('/profile',isLoggedin, async function(req, res, next) {

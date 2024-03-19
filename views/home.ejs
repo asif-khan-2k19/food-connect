@@ -2,10 +2,32 @@
 
 <div class="header">
     <h4>Home</h4>
-    
-    
+    <!-- <button id="backButton" onclick="goBack()">back</button> -->
 </div>
 
+<div class="container">
+    <div class="scroll-area">
+        <h4 style="text-align: center;">All Donations</h4>
+            <% user.donations.reverse().forEach(function(food){ %>
+                <% const dateObj = food.date %>
+                <% const day = dateObj.getDate(); %>
+                <% const monthIndex = dateObj.getMonth(); %>
+                <% const year = dateObj.getFullYear(); %>
+                <% const hours = dateObj.getHours(); %>
+                <% const minutes = dateObj.getMinutes(); %>
+                <% const amOrPm = hours >= 12 ? 'PM' : 'AM'; %>
+                <% const formattedHours = hours % 12 === 0 ? 12 : hours % 12; %>
+                <% const formattedMinutes = minutes < 10 ? '0' + minutes : minutes; %>
+                <% const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; %>
+            <div class="food-container">
+                <h4><%= food.foodItems %></h4>
+                <h5><%= day %> <%= monthNames[monthIndex] %>, <%= year %> | <%= formattedHours %>:<%= formattedMinutes %> <%= amOrPm %></h5>
+            </div>
+        <% }) %>
+      <br /><br /><br />
+        
+    </div>
+</div>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->

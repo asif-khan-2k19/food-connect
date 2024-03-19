@@ -1,7 +1,8 @@
 <% include ./partials/header.ejs %>
 
 <div class="header">
-    <h4>Donate</h4>
+  <h4>Donate</h4>
+  <!-- <button id="backButton" onclick="goBack()">back</button> -->
 </div>
 <br>
 
@@ -154,35 +155,117 @@
 
 
 <div class="container">
-    <div class="scroll-area">
-        <form action="/donatefood" method="post">
-            <p>Pickup location</p>
-            <input type="text" name="pickupLocation" class="edit-profile-input-field" placeholder="Pickup location"  spellcheck="false" autocomplete="off" required>
-            
-            <p>Food items</p>
-            <textarea type="text" name="foodItems" class="edit-profile-input-field" placeholder="1. Food item - Quantity"  spellcheck="false" autocomplete="off" required style="max-width: 250px; min-width: 250px; height: 100px; padding-top: 10px"></textarea>
-            
-            <p>Pickup date</p>
-            <input type="date" name="pickupDate" id="currentDate" class="edit-profile-input-field" placeholder="Pickup date"  spellcheck="false" autocomplete="off" required>
-            
-            <p>Pickup time</p>
-            <input type="time" name="pickupTime" id="currentTime" class="edit-profile-input-field" placeholder="Pickup time"  spellcheck="false" autocomplete="off" required>
-            
-            <p>For how many people?</p>
-            <input type="number" name="foodQuantity" class="edit-profile-input-field" placeholder="For how many people?"  spellcheck="false" autocomplete="off" required>
-            
-            <br><br>
-            
-            <input type="submit" class="submit-btn" value="Donate">
+  <div class="scroll-area">
+    <form action="/donatefood" method="post">
+      <p>Pickup location</p>
+      <input
+        type="text"
+        name="pickupLocation"
+        class="edit-profile-input-field"
+        placeholder="Pickup location"
+        spellcheck="false"
+        autocomplete="off"
+        required
+      />
 
-            <br><br><br>
+      <p>Food items</p>
+      <textarea
+        type="text"
+        name="foodItems"
+        class="edit-profile-input-field"
+        placeholder="Food item (Quantity)"
+        spellcheck="false"
+        autocomplete="off"
+        required
+        style="
+          max-width: 250px;
+          min-width: 250px;
+          height: 100px;
+          padding-top: 10px;
+        "
+      ></textarea>
 
-            <!-- <input type="date" name="donationDate" id="donationDate" hidden required> -->
-            <!-- <input type="time" name="donationTime" id="donationTime" hidden required> -->
-        </form>
-    </div>
+      <p>Pickup date</p>
+      <input
+        type="date"
+        name="pickupDate"
+        id="currentDate"
+        class="edit-profile-input-field"
+        placeholder="Pickup date"
+        spellcheck="false"
+        autocomplete="off"
+        required
+      />
+
+      <p>Pickup time</p>
+      <input
+        type="time"
+        name="pickupTime"
+        id="currentTime"
+        class="edit-profile-input-field"
+        placeholder="Pickup time"
+        spellcheck="false"
+        autocomplete="off"
+        required
+      />
+
+      <p>For how many people?</p>
+      <input
+        type="number"
+        name="foodQuantity"
+        class="edit-profile-input-field"
+        placeholder="For how many people?"
+        spellcheck="false"
+        autocomplete="off"
+        required
+      />
+
+      <input
+        type="datetime"
+        name="uploadDate"
+        required
+        hidden
+        id="upload-date"
+      />
+
+      <br /><br />
+
+      <input type="submit" class="submit-btn" value="Donate" />
+
+      <br /><br /><br />
+    </form>
+  </div>
 </div>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->
 <% include ./partials/footer.ejs %>
+
+<script>
+  // Dynamically getting time in donate page
+  window.onload = function () {
+    var currentTimeInput = document.getElementById("currentTime");
+    var currentDateInput = document.getElementById("currentDate");
+    var uploadDateInput = document.getElementById("upload-date");
+
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, "0");
+    var minutes = now.getMinutes().toString().padStart(2, "0");
+    var currentTime = hours + ":" + minutes;
+
+    currentTimeInput.value = currentTime;
+
+    var year = now.getFullYear().toString().padStart(4, "0");
+    var month = (now.getMonth() + 1).toString().padStart(2, "0");
+    var day = now.getDate().toString().padStart(2, "0");
+    var currentDate = year + "-" + month + "-" + day;
+
+    currentDateInput.value = currentDate;
+  };
+
+  function getDate(){
+    var uploadDateInput = document.getElementById("upload-date");
+    uploadDateInput.value = new Date();
+  }
+  getDate()
+</script>
