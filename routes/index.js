@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
 var userModel = require("./users");
 var foodModel = require("./food");
 
@@ -80,6 +79,7 @@ router.post('/donatefood', isLoggedin, async function(req, res, next){
 
   user.donations.push(food._id);
   await user.save();
+  handleNotification();
   res.redirect('/home');
 });
 
@@ -136,6 +136,22 @@ function isLoggedin(req, res, next){
     return next();
   }
   res.redirect("/");
+}
+
+function handleNotification() {
+  if ("Notification in window") {
+  Notification.requestPermission().then((result) => {
+    console.log("permission result: " + result);
+    // If user granted permission then open the notification panel
+    if (result === "granted") {
+      let notif = new Notification("New donation", {
+        body: "Food donation from Asif!",
+        icon: "/images/dish.png",
+        requireInteraction: true,
+      });
+    }
+  });
+}
 }
 
 module.exports = router;
