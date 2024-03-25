@@ -173,9 +173,12 @@ svg{
     padding: 0px 15px;
 }
 .profile-pic{
-    width: 70px;
-    height: 70px;
     border-radius: 50%;
+    overflow: hidden; 
+    width: 150px;
+    height: 150px; 
+    border: 2px solid #ccc;
+    margin: 100px auto;
 }
 
 .profile-pic img{
@@ -184,9 +187,11 @@ svg{
     height: 70px;
 }
 
-/* .profile-details{
-    
-} */
+.profile-details{
+    margin-bottom: 20px;
+} 
+
+
 
 .edit-profile{
     width: 100%;

@@ -7,15 +7,21 @@
 
 <div class="profile">
     <div class="profile-pic">
-        <img src="/images/uploads/default_profile.png" alt="">
+        <img src="/images/uploads/default_profile.png" alt="Profile Picture">
     </div>
     <div class="profile-details">
         <h4><%= user.name %></h4>
         <h6><%= user.address %></h6>
+        <h7><%= user.phone %></h7>
     </div>
 </div>
+<div class="profile-options">
+    <a href="/editprofile"><button class="edit-profile">🖊️ Edit Profile</button></a>
+    <a href="#" class="faqs">📚 FAQs</a>
+    <a href="#" class="history">📜 Donation History</a>
+    <a href="/logout"><button class="logout">🚪 Log Out</button></a>
+  </div>
 
-<a href="/editprofile"><button class="edit-profile">Edit Profile</button></a>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->
