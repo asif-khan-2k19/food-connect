@@ -7,17 +7,25 @@
 
 <div class="profile">
     <div class="profile-pic">
-        <img src="/images/uploads/default_profile.png" alt="">
+        <img src="/images/uploads/image.png" alt="Profile Picture">
     </div>
+
+
+
     <div class="profile-details">
         <h4><%= user.name %></h4>
+        <h7><%= user.phone %></h7>
         <h6><%= user.address %></h6>
+        
     </div>
 </div>
+<div class="profile-options">
+    <a href="/editprofile"><button class="edit-profile"><span>🖊️ Edit Profile</span></button></a>
+    <a href="#"><button class="faqs"><span>📚 FAQs</span></button></a>
+    <a href="/home"><button class="history"><span>📜 Donation History</span></button></a>
+    <a href="/logout"><button class="logout"><span>🚪 Log Out</span></button></a>
+  </div>
 
-<a href="/editprofile"><button class="edit-profile">Edit Profile</button></a>
-<br><br>
-<button onclick="handleNotification()" class="edit-profile ">Notification</button>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->
