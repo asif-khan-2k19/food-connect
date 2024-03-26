@@ -1,0 +1,119 @@
+<% include ./partials/header.ejs %>
+
+<div class="header">
+    <h4>Analytics</h4>
+    <!-- <button id="backButton" onclick="goBack()">back</button> -->
+</div>
+
+<div class="container">
+    <div class="scroll-area">
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Food Donation Analytics</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .container {
+                    max-width: 800px;
+                    margin: 20px auto;
+                    text-align: center;
+                    overflow-y: auto; /* Add vertical scrollbar to the container */
+                    height: 520px; /* Set maximum height for the container */
+                }
+
+                h2 {
+                    color: orange;
+                    margin-bottom: 20px;
+                }
+
+                .chartContainer {
+                    height: 300px;
+                    width: 100%;
+                    margin-top: 20px;
+                    margin-bottom: 0; /* Remove bottom margin */
+                }
+
+                .header {
+                    margin-bottom: 10px; /* Adjusted margin for header */
+                }
+
+            </style>
+        </head>
+        <body>
+            <h2>Food Donation Analytics</h2>
+            <div class="chartContainer" id="barChartContainer"></div> <!-- Remove line breaks between containers -->
+            <div class="chartContainer" id="pieChartContainer"></div>
+
+            <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+            <script>
+                window.onload = function() {
+                    // Bar Chart
+                    var barChart = new CanvasJS.Chart("barChartContainer", {
+                        animationEnabled: true,
+                        title: {
+                            text: "Monthly Donation Trends"
+                        },
+                        axisY: {
+                            title: "Quantity (lbs)"
+                        },
+                        data: [{
+                            type: "column",
+                            yValueFormatString: "#,##0 lbs",
+                            dataPoints: [
+                                { label: "January", y: 200 },
+                                { label: "February", y: 250 },
+                                { label: "March", y: 300 },
+                                { label: "April", y: 350 },
+                                { label: "May", y: 400 },
+                                { label: "June", y: 450 },
+                                { label: "July", y: 500 },
+                                { label: "August", y: 550 },
+                                { label: "September", y: 600 },
+                                { label: "October", y: 650 },
+                                { label: "November", y: 700 },
+                                { label: "December", y: 750 }
+                            ]
+                        }]
+                    });
+                    barChart.render();
+
+                    // Pie Chart
+                    var pieChart = new CanvasJS.Chart("pieChartContainer", {
+                        animationEnabled: true,
+                        title: {
+                            text: "Donation Distribution by Category"
+                        },
+                        data: [{
+                            type: "pie",
+                            startAngle: 240,
+                            yValueFormatString: "##0.00\"%\"",
+                            indexLabel: "{label} {y}",
+                            dataPoints: [
+                                { y: 35, label: "Vegetables" },
+                                { y: 25, label: "Fruits" },
+                                { y: 20, label: "Grains" },
+                                { y: 15, label: "Canned Goods" },
+                                { y: 5, label: "Others" }
+                            ]
+                        }]
+                    });
+                    pieChart.render();
+                }
+                
+            </script>
+        </body>
+        </html>
+
+    </div>
+</div>
+<!-- Navigation bar -->
+<% include ./partials/navigation.ejs %>
+<!-- Footer -->
+<% include ./partials/footer.ejs %>
