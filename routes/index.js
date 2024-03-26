@@ -34,6 +34,12 @@ router.get('/help',isLoggedin,async function(req, res, next) {
   res.render('help', { user: user});
 }); 
 
+router.get('/reports',isLoggedin,async function(req, res, next) {
+  const user = await userModel.findOne({username: req.session.passport.user})
+  await user.populate('donations');
+  res.render('reports', { user: user});
+}); 
+
 router.get('/analytics', function(req, res){
   res.render('analytics');
 })
