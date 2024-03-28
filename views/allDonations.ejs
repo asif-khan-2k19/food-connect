@@ -7,7 +7,7 @@
 <div class="container">
     <div class="scroll-area">
         <h4 style="text-align: center;">All Donations</h4>
-            <% user.donations.reverse().forEach(function(food){ %>
+            <% food.reverse().forEach(function(food){ %>
                 <% const dateObj = food.date %>
                 <% const day = dateObj.getDate(); %>
                 <% const monthIndex = dateObj.getMonth(); %>

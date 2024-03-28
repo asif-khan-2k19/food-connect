@@ -27,6 +27,13 @@ router.get('/home',isLoggedin,async function(req, res, next) {
   res.render('home', { user: user});
 }); 
 
+router.get('/all-donations',isLoggedin,async function(req, res, next) {
+  const user = await userModel.findOne({username: req.session.passport.user})
+  const food = await foodModel.find()
+
+  res.render('allDonations', { food: food, user: user});
+}); 
+
 
 router.get('/help',isLoggedin,async function(req, res, next) {
   const user = await userModel.findOne({username: req.session.passport.user})
@@ -68,6 +75,17 @@ router.post('/updateprofile', isLoggedin, async function(req, res, next) {
   res.redirect('/profile')
 });
 
+router.get('/donation/:id',isLoggedin,async function(req, res, next) {
+  const id = req.params.id;
+  console.log(id);
+  const user = await userModel.findOne({
+    username : req.session.passport.user
+  })
+  const food = await foodModel.findOne({_id: id})
+  await food.populate('donatedBy');
+  res.render('donation', { food: food, user: user});
+}); 
+
 router.post('/donatefood', isLoggedin, async function(req, res, next){
   const user = await userModel.findOne({username : req.session.passport.user});
   console.log(user);
@@ -85,17 +103,26 @@ router.post('/donatefood', isLoggedin, async function(req, res, next){
 
   user.donations.push(food._id);
   await user.save();
-  handleNotification();
   res.redirect('/home');
 });
 
-router.get('/upload', isLoggedin, function(req, res, next) {
-  res.render('upload');
+router.get('/upload', isLoggedin, async function(req, res, next) {
+  const user = await userModel.findOne({ username : req.session.passport.user })
+  res.render('upload', {user: user});
 });
 
-router.get('/reviews', isLoggedin, function(req, res, next) {
-  res.render('reviews');
+router.get('/reviews', isLoggedin,async function(req, res, next) {
+  const user = await userModel.findOne({ username : req.session.passport.user })
+  
+  res.render('reviews', {user: user});
 });
+
+router.get('/add-reviews', isLoggedin,async function(req, res, next) {
+  const user = await userModel.findOne({ username : req.session.passport.user })
+  
+  res.render('addReviews', {user: user});
+});
+
 
 router.get('/profile',isLoggedin, async function(req, res, next) {
   const user = await userModel.findOne(
@@ -142,22 +169,6 @@ function isLoggedin(req, res, next){
     return next();
   }
   res.redirect("/");
-}
-
-function handleNotification() {
-  if ("Notification in window") {
-  Notification.requestPermission().then((result) => {
-    console.log("permission result: " + result);
-    // If user granted permission then open the notification panel
-    if (result === "granted") {
-      let notif = new Notification("New donation", {
-        body: "Food donation from Asif!",
-        icon: "/images/dish.png",
-        requireInteraction: true,
-      });
-    }
-  });
-}
 }
 
 module.exports = router;

@@ -31,8 +31,11 @@ const foodSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  isNotified: {
+    type: Boolean,
+    default: false
+  }
 });
 
-// foodSchema.plugin(plm);
 
 module.exports = mongoose.model("Food", foodSchema);

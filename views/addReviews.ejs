@@ -1,0 +1,137 @@
+<% include ./partials/header.ejs %>
+
+<div class="header">
+  <svg
+    onclick="goBack()"
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="lucide lucide-chevron-left"
+  >
+    <path d="m15 18-6-6 6-6" />
+  </svg>
+  <h4>Reviews</h4>
+</div>
+
+<div class="container">
+  <div class="scroll-area">
+    <form id="reviewForm" action="/submit-review" method="post">
+      
+
+      <p>Food Freshness:</p>
+      <select
+        style="width: 270px"
+        id="freshness"
+        name="freshness"
+        class="edit-profile-input-field"
+      >
+        <option value="5">Excellent</option>
+        <option value="4">Good</option>
+        <option value="3">Average</option>
+        <option value="2">Below Average</option>
+        <option value="1">Poor</option>
+      </select>
+
+      <p>Food Safety and Hygiene:</p>
+      <select
+        id="safety_hygiene"
+        name="safety_hygiene"
+        class="edit-profile-input-field"
+        style="width: 270px"
+      >
+        <option value="5">Excellent</option>
+        <option value="4">Good</option>
+        <option value="3">Average</option>
+        <option value="2">Below Average</option>
+        <option value="1">Poor</option>
+      </select>
+
+      <p>Food Variety:</p>
+      <select
+        style="width: 270px"
+        id="variety"
+        name="variety"
+        class="edit-profile-input-field"
+      >
+        <option value="5">Excellent</option>
+        <option value="4">Good</option>
+        <option value="3">Average</option>
+        <option value="2">Below Average</option>
+        <option value="1">Poor</option>
+      </select>
+
+      <p>Food Taste:</p>
+      <select
+        style="width: 270px"
+        id="taste"
+        name="taste"
+        class="edit-profile-input-field"
+      >
+        <option value="5">Excellent</option>
+        <option value="4">Good</option>
+        <option value="3">Average</option>
+        <option value="2">Below Average</option>
+        <option value="1">Poor</option>
+      </select>
+
+      <p>Food Portion Size:</p>
+      <select
+        id="portion_size"
+        name="portion_size"
+        class="edit-profile-input-field"
+        style="width: 270px"
+      >
+        <option value="5">Excellent</option>
+        <option value="4">Good</option>
+        <option value="3">Average</option>
+        <option value="2">Below Average</option>
+        <option value="1">Poor</option>
+      </select>
+      <br>
+      <p>Rating:</p>
+      <select
+        style="width: 270px"
+        id="freshness"
+        name="freshness"
+        class="edit-profile-input-field"
+      >
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
+      </select>
+      <p>Review:</p>
+      <textarea
+        id="reviewText"
+        name="reviewText"
+        rows="4"
+        cols="50"
+        required
+        class="edit-profile-input-field"
+        style="
+          max-width: 250px;
+          min-width: 250px;
+          height: 100px;
+          padding-top: 10px;
+        "
+      ></textarea>
+      <br /><br />
+
+      <button type="submit" class="submit-btn">Submit Review</button>
+      <!-- </div> -->
+    </form>
+    <br /><br /><br />
+  </div>
+</div>
+
+<!-- Navigation bar -->
+<% include ./partials/navigation.ejs %>
+<!-- Footer -->
+<% include ./partials/footer.ejs %>
