@@ -10,6 +10,9 @@
 <%= food.pickupDate %>
 <%= food.pickupTime %>
 <%= food.donatedBy.name %>
+<%= food.donatedBy._id %>
+<a href="/add-reviews/<%= food.donatedBy._id %>">review</a>
+
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->

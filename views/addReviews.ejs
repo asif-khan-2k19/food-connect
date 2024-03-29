@@ -21,9 +21,7 @@
 
 <div class="container">
   <div class="scroll-area">
-    <form id="reviewForm" action="/submit-review" method="post">
-      
-
+    <form id="reviewForm" action="/submit-review/<%= user._id %>" method="post">
       <p>Food Freshness:</p>
       <select
         style="width: 270px"
@@ -31,25 +29,25 @@
         name="freshness"
         class="edit-profile-input-field"
       >
-        <option value="5">Excellent</option>
-        <option value="4">Good</option>
-        <option value="3">Average</option>
-        <option value="2">Below Average</option>
-        <option value="1">Poor</option>
+        <option value="Excellent">Excellent</option>
+        <option value="Good">Good</option>
+        <option value="Average">Average</option>
+        <option value="Below Average">Below Average</option>
+        <option value="Poor">Poor</option>
       </select>
 
       <p>Food Safety and Hygiene:</p>
       <select
         id="safety_hygiene"
-        name="safety_hygiene"
+        name="safetyAndHygiene"
         class="edit-profile-input-field"
         style="width: 270px"
       >
-        <option value="5">Excellent</option>
-        <option value="4">Good</option>
-        <option value="3">Average</option>
-        <option value="2">Below Average</option>
-        <option value="1">Poor</option>
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Below Average">Below Average</option>
+      <option value="Poor">Poor</option>
       </select>
 
       <p>Food Variety:</p>
@@ -59,11 +57,11 @@
         name="variety"
         class="edit-profile-input-field"
       >
-        <option value="5">Excellent</option>
-        <option value="4">Good</option>
-        <option value="3">Average</option>
-        <option value="2">Below Average</option>
-        <option value="1">Poor</option>
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Below Average">Below Average</option>
+      <option value="Poor">Poor</option>
       </select>
 
       <p>Food Taste:</p>
@@ -73,32 +71,32 @@
         name="taste"
         class="edit-profile-input-field"
       >
-        <option value="5">Excellent</option>
-        <option value="4">Good</option>
-        <option value="3">Average</option>
-        <option value="2">Below Average</option>
-        <option value="1">Poor</option>
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Below Average">Below Average</option>
+      <option value="Poor">Poor</option>
       </select>
 
       <p>Food Portion Size:</p>
       <select
         id="portion_size"
-        name="portion_size"
+        name="portionSize"
         class="edit-profile-input-field"
         style="width: 270px"
       >
-        <option value="5">Excellent</option>
-        <option value="4">Good</option>
-        <option value="3">Average</option>
-        <option value="2">Below Average</option>
-        <option value="1">Poor</option>
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Below Average">Below Average</option>
+      <option value="Poor">Poor</option>
       </select>
       <br>
       <p>Rating:</p>
       <select
         style="width: 270px"
-        id="freshness"
-        name="freshness"
+        id="rating"
+        name="rating"
         class="edit-profile-input-field"
       >
         <option value="5">5</option>
@@ -125,7 +123,6 @@
       <br /><br />
 
       <button type="submit" class="submit-btn">Submit Review</button>
-      <!-- </div> -->
     </form>
     <br /><br /><br />
   </div>
