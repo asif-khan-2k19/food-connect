@@ -8,9 +8,9 @@ const foodSchema = new mongoose.Schema({
   date: {
     type: Date
   },
-  isAccepted: {
-    type: Boolean,
-    default: false
+  status: {
+    type: String,
+    default: "Pending"
   },
   foodQuantity: {
     type: Number,

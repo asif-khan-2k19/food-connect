@@ -18,12 +18,10 @@
                 <% const formattedHours = hours % 12 === 0 ? 12 : hours % 12; %>
                 <% const formattedMinutes = minutes < 10 ? '0' + minutes : minutes; %>
                 <% const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; %>
-                <a href="/donation/<%= food._id %>" style="color: black; font-size: 16px;">
                     <div class="food-container">
                         <h4><%= food.foodItems %></h4>
                         <h5><%= day %> <%= monthNames[monthIndex] %>, <%= year %> | <%= formattedHours %>:<%= formattedMinutes %> <%= amOrPm %></h5>
                     </div>
-                </a>
             <% }) %>
       <br /><br /><br />
         

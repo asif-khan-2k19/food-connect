@@ -4,14 +4,29 @@
     <svg onclick="goBack()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
     <h4>Donation</h4>
 </div>
+<%= food._id %>
+<br>
+<%= food.status %>
+<br>
 <%= food.foodQuantity %>
+<br>
 <%= food.foodItems %>
+<br>
 <%= food.pickupLocation %>
+<br>
 <%= food.pickupDate %>
+<br>
 <%= food.pickupTime %>
+<br>
 <%= food.donatedBy.name %>
+<br>
 <%= food.donatedBy._id %>
-<a href="/add-reviews/<%= food.donatedBy._id %>">review</a>
+<br>
+<a href="/accept-food/<%= food._id %>">Accept donation</a>
+<br>
+<a href="/reject-food/<%= food._id %>">Reject donation</a>
+<br>
+<a href="/add-reviews/<%= food.donatedBy._id %>">Review</a>
 
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>

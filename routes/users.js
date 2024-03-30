@@ -41,31 +41,31 @@ const userSchema = new mongoose.Schema({
   reviews: {
     freshness : {
       type: String,
-      default:1
+      default:"No review"
     },
     safetyAndHygiene: {
       type: String,
-      default:1
+      default:"No review"
     },
     variety: {
       type: String,
-      default:1
+      default:"No review"
     },
     taste: {
       type: String,
-      default:1
+      default:"No review"
     },
     portionSize: {
       type: String,
-      default:1
+      default:"No review"
     },
     rating: {
       type: Number,
-      default:1
+      default: 0
     },
     review: {
       type: String,
-      default: "No reviews yet"
+      default: "No review"
     }
   }
 })

@@ -106,6 +106,31 @@ router.post("/donatefood", isLoggedin, async function (req, res, next) {
   res.redirect("/home");
 });
 
+
+router.get("/accept-food/:id", isLoggedin, async function (req, res, next) {
+  const food = await foodModel.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      status: "Accepted"
+    },
+    { new: true }
+  );
+  await food.save();
+  res.redirect('/all-donations');
+});
+
+router.get("/reject-food/:id", isLoggedin, async function (req, res, next) {
+  const food = await foodModel.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      status: "Rejected"
+    },
+    { new: true }
+  );
+  await food.save();
+  res.redirect('/all-donations');
+});
+
 router.get("/upload", isLoggedin, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user });
   res.render("upload", { user: user });
