@@ -10,11 +10,13 @@ var localStrategy = require("passport-local");
 passport.use(new localStrategy(userModel.authenticate()));
 
 router.get("/", function (req, res, next) {
-  res.render("index");
+  var falshError = req.flash("error");
+  res.render("login", { err: falshError });
 });
 
 router.get("/signup", function (req, res, next) {
-  res.render("signup");
+  var falshError = req.flash("error");
+  res.render("signup", { err: falshError });
 });
 
 router.get("/login", function (req, res, next) {
@@ -38,6 +40,11 @@ router.get("/help", isLoggedin, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user });
   await user.populate("donations");
   res.render("help", { user: user });
+});
+
+router.get("/terms", isLoggedin, async function (req, res, next) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  res.render("terms", { user: user });
 });
 
 router.get("/reports", isLoggedin, async function (req, res, next) {
@@ -106,29 +113,28 @@ router.post("/donatefood", isLoggedin, async function (req, res, next) {
   res.redirect("/home");
 });
 
-
 router.get("/accept-food/:id", isLoggedin, async function (req, res, next) {
   const food = await foodModel.findOneAndUpdate(
     { _id: req.params.id },
     {
-      status: "Accepted"
+      status: "Accepted",
     },
     { new: true }
   );
   await food.save();
-  res.redirect('/all-donations');
+  res.redirect("/all-donations");
 });
 
 router.get("/reject-food/:id", isLoggedin, async function (req, res, next) {
   const food = await foodModel.findOneAndUpdate(
     { _id: req.params.id },
     {
-      status: "Rejected"
+      status: "Rejected",
     },
     { new: true }
   );
   await food.save();
-  res.redirect('/all-donations');
+  res.redirect("/all-donations");
 });
 
 router.get("/upload", isLoggedin, async function (req, res, next) {
@@ -143,8 +149,9 @@ router.get("/reviews", isLoggedin, async function (req, res, next) {
 });
 
 router.get("/add-reviews/:id", isLoggedin, async function (req, res, next) {
-  const user = await userModel.findOne({ _id: req.params.id });
-  res.render("addReviews", { user: user });
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  const singleUser = await userModel.findOne({ _id: req.params.id });
+  res.render("addReviews", { user: user, singleUser: singleUser });
 });
 
 router.post("/submit-review/:id", isLoggedin, async function (req, res, next) {
@@ -164,7 +171,7 @@ router.post("/submit-review/:id", isLoggedin, async function (req, res, next) {
     { new: true }
   );
   await user.save();
-  res.redirect('/home');
+  res.redirect("/all-donations");
 });
 
 router.get("/profile", isLoggedin, async function (req, res, next) {

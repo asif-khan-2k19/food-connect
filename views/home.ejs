@@ -19,8 +19,18 @@
                 <% const formattedMinutes = minutes < 10 ? '0' + minutes : minutes; %>
                 <% const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; %>
                     <div class="food-container">
+                        <% if(food.status == "Accepted"){ %>
+                            <div class="status" style="background-color: rgb(56, 238, 56); color: white;">
+                        <% }else if(food.status == "Rejected"){ %>
+                            <div class="status" style="background-color: crimson; color: white;">
+                        <% } else{ %>
+                            <div class="status" style="background-color: orange; color: white;">
+                        <% } %>
+
+                            <h5><%= food.status %></h5>
+                        </div>
                         <h4><%= food.foodItems %></h4>
-                        <h5><%= day %> <%= monthNames[monthIndex] %>, <%= year %> | <%= formattedHours %>:<%= formattedMinutes %> <%= amOrPm %></h5>
+                        <h5  id="date-time"><%= day %> <%= monthNames[monthIndex] %>, <%= year %> | <%= formattedHours %>:<%= formattedMinutes %> <%= amOrPm %></h5>
                     </div>
             <% }) %>
       <br /><br /><br />

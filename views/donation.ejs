@@ -1,32 +1,85 @@
 <% include ./partials/header.ejs %>
 
+<% const dateObj = food.date %>
+<% const day = dateObj.getDate(); %>
+<% const monthIndex = dateObj.getMonth(); %>
+<% const year = dateObj.getFullYear(); %>
+<% const hours = dateObj.getHours(); %>
+<% const minutes = dateObj.getMinutes(); %>
+<% const amOrPm = hours >= 12 ? 'PM' : 'AM'; %>
+<% const formattedHours = hours % 12 === 0 ? 12 : hours % 12; %>
+<% const formattedMinutes = minutes < 10 ? '0' + minutes : minutes; %>
+<% const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; %>
+
 <div class="header">
-    <svg onclick="goBack()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
-    <h4>Donation</h4>
+  <svg
+    onclick="goBack()"
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="lucide lucide-chevron-left"
+  >
+    <path d="m15 18-6-6 6-6" />
+  </svg>
+  <h4>Donation</h4>
 </div>
-<%= food._id %>
-<br>
-<%= food.status %>
-<br>
-<%= food.foodQuantity %>
-<br>
-<%= food.foodItems %>
-<br>
-<%= food.pickupLocation %>
-<br>
-<%= food.pickupDate %>
-<br>
-<%= food.pickupTime %>
-<br>
-<%= food.donatedBy.name %>
-<br>
-<%= food.donatedBy._id %>
-<br>
-<a href="/accept-food/<%= food._id %>">Accept donation</a>
-<br>
-<a href="/reject-food/<%= food._id %>">Reject donation</a>
-<br>
-<a href="/add-reviews/<%= food.donatedBy._id %>">Review</a>
+<div class="container">
+  <div class="scroll-area">
+    <div class="food-image">
+        <img src="https://source.unsplash.com/random/500x300/?food" alt="">
+        <!-- <img src="/images/burger2.png" alt=""> -->
+    </div>
+    <div class="donation-details">
+      <h2><%= food.donatedBy.name %></h2>
+      <h5 style="color: #2e2e2e; margin-top: -5px;">🍽️ <%= food.donatedBy.from %></h5>
+      <p>Pickup details</p>
+      <div class="pickup-details">
+        <div class="location">
+          <h5>📍 <%= food.pickupLocation %></h5>
+        </div>
+        <div class="date">
+          <h5>📅 <%= day %> <%= monthNames[monthIndex] %>, <%= year %></h5>
+          <!-- <h5>📅 <%= food.pickupDate %></h5> -->
+          
+        </div>
+        <div class="time">
+          <h5>⏱️ <%= formattedHours %>:<%= formattedMinutes %> <%= amOrPm %></h5>
+        </div>
+      </div>
+      <p>Food Items</p>
+
+      <div class="food-details">
+        <div class="food-items">
+          <h3><%= food.foodItems %></h3>
+        </div>
+        <h5 style="color: #303030b2; margin-top: 15px;"><%= food.foodQuantity %> persons can eat the food!</h5>
+      </div>
+    </div>
+<!-- <a href="/add-reviews/<%= food.donatedBy._id %>">Review</a> -->
+
+    <% if(food.status== "Accepted" ) { %>
+      <a href="/reject-food/<%= food._id %>">
+        <button class="reject-button" value="Reject donation">
+          Reject donation
+        </button>
+      </a>
+    
+    <% }else{ %>
+      <a href="/accept-food/<%= food._id %>">
+        <button class="accept-button" value="Accept donation">
+          Accept donation
+        </button>
+      </a>
+    <% } %>
+    <br><br><br><br>
+  </div>
+</div>
 
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>

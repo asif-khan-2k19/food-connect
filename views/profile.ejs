@@ -18,7 +18,12 @@
 <div class="profile-options">
     <a href="/editprofile"><button class="edit-profile"><span>🖊️ Edit Profile</span></button></a>
     <a href="/help"><button class="faqs"><span>🤝 Help</span></button></a>
-    <a href="/home"><button class="history"><span>📜 Donation History</span></button></a>
+    <% if(user.isAdmin){%>
+        <a href="/all-donations"><button class="history"><span>📜 All Donations</span></button></a>
+    <% }else{%>
+        <a href="/home"><button class="history"><span>📜 Donation History</span></button></a>
+    <% }%>
+    <!-- <a href="/home"><button class="history"><span>📜 Donation History</span></button></a> -->
     <a href="/logout"><button class="logout"><span>🚪 Log Out</span></button></a>
   </div>
 

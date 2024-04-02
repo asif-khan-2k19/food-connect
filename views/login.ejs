@@ -2,12 +2,15 @@
 <div class="container">
     <form action="/login" method="post">
         <h1>Login</h1>
-        <p>Username</p>
-        <input type="text" name="username" class="input-field" placeholder="Username" spellcheck="false" autocomplete="off">
-        
-        <p>Password</p>
-        <input type="password" name="password" class="input-field" placeholder="Password">
-        
+        <% if(err.length > 0 ) { %>
+            <% } %>
+            <p>Username</p>
+            <input type="text" name="username" class="input-field" placeholder="Username" spellcheck="false" autocomplete="off">
+            
+            <p>Password</p>
+            <input type="password" name="password" class="input-field" placeholder="Password">
+            
+        <h5 class="authentication-error" style=" color: crimson; text-align: center; margin-top: 10px;"><%= err %> </h5>
         <p><a href="/forget">Forget Password?</a></p>
         
         <button type="submit" class="submit-btn">Log in</button>

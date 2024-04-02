@@ -134,16 +134,7 @@ a {
   border-radius: 40px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.532);
   background-color: var(--white);
-}
-
-.navigation #upload {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(120deg, var(--primary-light), var(--primary));
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  z-index: 9999999999;
 }
 
 .navigation svg {
@@ -160,15 +151,11 @@ a {
   padding: 0px 10px;
 }
 
-.header svg{
+.header svg {
   cursor: pointer;
 }
 /* Profile Page */
-h3 {
-  font-size: 1.8em;
-  color: #0f0f0e;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
+
 .profile {
   width: 100%;
   height: 100px;
@@ -193,12 +180,12 @@ h3 {
 }
 
 .profile-details {
-    width:150px;
+  width: 150px;
   margin-bottom: 20px;
   padding-top: 10px;
   padding-right: 20px;
   padding-bottom: 10px;
-  padding-left:20px;
+  padding-left: 20px;
   border-radius: 20px;
   box-shadow: 4px 4px 10px rgba(245, 137, 4, 0.471);
 }
@@ -318,6 +305,7 @@ h3 {
 /* User - Home Screen Page */
 
 .food-container {
+  position: relative;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
@@ -331,6 +319,7 @@ h3 {
   margin-top: 15px;
   cursor: pointer;
   transition: 0.2s;
+  overflow: hidden;
 }
 
 .food-container:hover {
@@ -338,7 +327,95 @@ h3 {
   z-index: 99;
 }
 
-.food-container h5 {
-  opacity: 0.6;
+.food-container .status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  border-top-left-radius: 10px;
+  width: 60px;
+  height: 17px;
+  padding: 5px 10px;
+}
+
+.food-container #date-time {
+  color: #000000a7;
   margin-top: 5px;
+}
+
+/* Individual donation page */
+.food-image {
+  position: relative;
+  width: 300px;
+  height: 180px;
+  border-radius: 15px;
+  overflow: hidden;
+  top: 10px;
+}
+.food-image img {
+  width: 100%;
+  object-fit: cover;
+  z-index: 99;
+}
+
+.donation-details {
+  position: relative;
+  top: 15px;
+  width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.pickup-details {
+  text-align: center;
+  margin-top: -5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  color: #2e2e2e;
+}
+
+.food-details {
+  margin-top: -7px;
+  margin-bottom: 15px;
+}
+
+.accept-button {
+  width: 300px;
+  padding: 10px;
+  border: var(--primary);
+  border-radius: 50px;
+  background-color: var(--primary);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.reject-button {
+  width: 300px;
+  padding: 10px;
+  border: 3px solid var(--primary);
+  border-radius: 50px;
+  background-color: var(--white);
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* Terms page */
+
+.help-section {
+  width: 300px;
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+.help-section li {
+  font-size: 14px;
+  /* padding: 10px; */
+  margin-left: 20px;
+  line-height: 20px;
+  margin-bottom: 10px;
 }
