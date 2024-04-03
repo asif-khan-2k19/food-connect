@@ -1,7 +1,17 @@
-<% include ./partials/header.ejs %>
+<% include ./partials/header.ejs %> 
+
+<% function getStars(rating){ 
+  let filledStars = rating;
+  let emptyStars = 5 - rating;
+
+  for(let i=0; i < filledStars; i++){ %>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fdc400" stroke="#fdc400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star" ><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+  <% } for(let i=0; i < emptyStars; i++){ %>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="silver" stroke="silver" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star" ><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+<%  }} %>
 
 <div class="header">
-    <svg
+  <svg
     onclick="goBack()"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -16,24 +26,35 @@
   >
     <path d="m15 18-6-6 6-6" />
   </svg>
-    <h4>Reviews</h4>
+  <h4>Reviews</h4>
 </div>
 
 <div class="container">
-    <div class="scroll-area" style="text-align: center;">
-      <p>Food Freshness:</p><%= user.reviews.freshness %>
-      <p>Food Safety and Hygiene:</p><%= user.reviews.safetyAndHygiene %>
-      <p>Food Variety:</p><%= user.reviews.variety %>
-      <p>Food Taste:</p><%= user.reviews.taste %>
-      <p>Food Portion Size:</p><%= user.reviews.portionSize %>
-      <p>Rating:</p><%= user.reviews.rating %>
-      <p>Review:</p><%= user.reviews.review %>
-        
-        <br /><br /><br />
-        
-    </div>
-</div>
+  <div class="scroll-area" style="text-align: center">
+    <p>Review</p>
+    <div class="review-text"><%= user.reviews.review %></div>
 
+    <p>Food Freshness</p>
+    <div class="star-bg"><% getStars( user.reviews.freshness ) %></div>
+
+    <p>Food Hygiene</p>
+    <div class="star-bg"><% getStars( user.reviews.safetyAndHygiene ) %></div>
+
+    <p>Food Variety</p>
+    <div class="star-bg"><% getStars(user.reviews.variety) %></div>
+
+    <p>Food Taste</p>
+    <div class="star-bg"><% getStars(user.reviews.taste) %></div>
+
+    <p>Food Portion Size</p>
+    <div class="star-bg"><% getStars(user.reviews.portionSize) %></div>
+
+    <p>Overall Rating</p>
+    <div class="star-bg"><% getStars(user.reviews.rating) %></div>
+
+    <br /><br /><br />
+  </div>
+</div>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->

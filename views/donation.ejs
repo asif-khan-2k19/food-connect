@@ -1,15 +1,22 @@
 <% include ./partials/header.ejs %>
+<%
+const dateStr = food.pickupDate;
+const timeStr = food.pickupTime;
 
-<% const dateObj = food.date %>
-<% const day = dateObj.getDate(); %>
-<% const monthIndex = dateObj.getMonth(); %>
-<% const year = dateObj.getFullYear(); %>
-<% const hours = dateObj.getHours(); %>
-<% const minutes = dateObj.getMinutes(); %>
-<% const amOrPm = hours >= 12 ? 'PM' : 'AM'; %>
-<% const formattedHours = hours % 12 === 0 ? 12 : hours % 12; %>
-<% const formattedMinutes = minutes < 10 ? '0' + minutes : minutes; %>
-<% const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; %>
+const [year, month, day] = dateStr.split("-");
+const [hours, minutes] = timeStr.split(":");
+const dateObj = new Date(year, month - 1, day, hours, minutes);
+
+const dayOfMonth = dateObj.getDate();
+const monthIndex = dateObj.getMonth();
+const yearValue = dateObj.getFullYear();
+const hourValue = dateObj.getHours();
+const minuteValue = dateObj.getMinutes();
+const amOrPm = hourValue >= 12 ? 'PM' : 'AM';
+const formattedHours = hourValue % 12 === 0 ? 12 : hourValue % 12;
+const formattedMinutes = minuteValue < 10 ? '0' + minuteValue : minuteValue;
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+%>
 
 <div class="header">
   <svg
@@ -33,7 +40,6 @@
   <div class="scroll-area">
     <div class="food-image">
         <img src="https://source.unsplash.com/random/500x300/?food" alt="">
-        <!-- <img src="/images/burger2.png" alt=""> -->
     </div>
     <div class="donation-details">
       <h2><%= food.donatedBy.name %></h2>
@@ -45,8 +51,6 @@
         </div>
         <div class="date">
           <h5>📅 <%= day %> <%= monthNames[monthIndex] %>, <%= year %></h5>
-          <!-- <h5>📅 <%= food.pickupDate %></h5> -->
-          
         </div>
         <div class="time">
           <h5>⏱️ <%= formattedHours %>:<%= formattedMinutes %> <%= amOrPm %></h5>

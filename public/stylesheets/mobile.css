@@ -48,7 +48,6 @@
   border-radius: 20px;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  /* overflow-y: auto; */
   padding: 30px 10px;
   box-sizing: border-box;
 }
@@ -186,23 +185,19 @@ a {
   padding-right: 20px;
   padding-bottom: 10px;
   padding-left: 20px;
-  border-radius: 20px;
-  box-shadow: 4px 4px 10px rgba(245, 137, 4, 0.471);
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(66, 66, 66, 0.319);
 }
-.profile-details h4 {
+.profile-details h3 {
   padding-bottom: 1px;
-  margin-bottom: 1px;
+  line-height: 20px;
+  margin-bottom: 5px;
   color: #412d25; /* LightSalmon */
 }
-.profile-details h6 {
+.profile-details h5 {
   padding-bottom: 1px;
   margin-bottom: 1px;
   color: #6e4231; /* LightSalmon */
-}
-.profile-details h7 {
-  padding-bottom: 1px;
-  margin-bottom: 1px;
-  color: #5c3e32; /* LightSalmon */
 }
 .profile-details {
   margin: 0;
@@ -216,7 +211,7 @@ a {
   align-items: center;
 }
 .profile-options a {
-  color: #ff9f1c;
+  color: var(--orange);
   text-decoration: none;
   padding: 1px 2px;
   border-radius: 25px;
@@ -418,4 +413,28 @@ a {
   margin-left: 20px;
   line-height: 20px;
   margin-bottom: 10px;
+}
+
+/* review page */
+
+.star-bg{
+  margin: 0px auto;
+  width: 210px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 40px;
+  margin-bottom: 20px;
+}
+
+.review-text{
+  width: 100%;
+  color: #3e3e3e;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 400;
+  box-sizing: border-box;
+  background-color: #f6f6f6;
 }
