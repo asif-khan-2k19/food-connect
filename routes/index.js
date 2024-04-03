@@ -47,15 +47,11 @@ router.get("/terms", isLoggedin, async function (req, res, next) {
   res.render("terms", { user: user });
 });
 
-router.get("/reports", isLoggedin, async function (req, res, next) {
+router.get("/analytics",isLoggedin, async function (req, res) {
+  const users = await userModel.find();
+  const foods = await foodModel.find();
   const user = await userModel.findOne({ username: req.session.passport.user });
-  await user.populate("donations");
-  res.render("reports", { user: user });
-});
-
-router.get("/analytics", async function (req, res) {
-  const user = await userModel.findOne({ username: req.session.passport.user });
-  res.render("analytics", { user: user });
+  res.render("analytics", { user: user, users: users, foods: foods  });
 });
 
 router.get("/editprofile", isLoggedin, async function (req, res, next) {

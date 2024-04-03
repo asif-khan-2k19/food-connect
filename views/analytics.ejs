@@ -1,5 +1,42 @@
 <% include ./partials/header.ejs %>
 
+<%
+// Assuming 'users' and 'foods' are obtained from the server
+let totalUsers = users.length;
+let totalDonations = 0;
+let acceptedDonations = 0;
+let rejectedDonations = 0;
+let pendingDonations = 0;
+let donationMonths = {};
+
+var monthlyDonations = new Array(13).fill(0); 
+
+foods.forEach(food => {
+  totalDonations++;
+
+  const donationDate = new Date(food.date);
+  const month = donationDate.getMonth() + 1; 
+  monthlyDonations[month]++;
+
+  switch (food.status) {
+      case "Accepted":
+          acceptedDonations++;
+          break;
+      case "Rejected":
+          rejectedDonations++;
+          break;
+      case "Pending":
+          pendingDonations++;
+          break;
+      default:
+          break;
+  }
+});
+
+// Find top donors
+let topDonors = users.sort((a, b) => b.donations.length - a.donations.length).slice(0, 5);
+%>
+
 <div class="header">
   <svg
     onclick="goBack()"
@@ -21,106 +58,83 @@
 
 <div class="container">
   <div class="scroll-area">
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-
-      .container {
-        max-width: 800px;
-        margin: 20px auto;
-        text-align: center;
-        overflow-y: auto; /* Add vertical scrollbar to the container */
-        height: 520px; /* Set maximum height for the container */
-      }
-
-      h2 {
-        color: orange;
-        margin-bottom: 20px;
-      }
-
-      .chartContainer {
-        height: 300px;
-        width: 100%;
-        margin-top: 20px;
-        margin-bottom: 0; /* Remove bottom margin */
-      }
-
-      .header {
-        margin-bottom: 10px; /* Adjusted margin for header */
-      }
-    </style>
-    <h2>Food Donation Analytics</h2>
+    
     <div class="chartContainer" id="barChartContainer"></div>
-    <!-- Remove line breaks between containers -->
-    <div class="chartContainer" id="pieChartContainer"></div>
-    <br /><br /><br />
 
-    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-    <script>
-      window.onload = function () {
-        // Bar Chart
-        var barChart = new CanvasJS.Chart("barChartContainer", {
-          animationEnabled: true,
-          title: {
-            text: "Monthly Donation Trends",
-          },
-          axisY: {
-            title: "Quantity (lbs)",
-          },
-          data: [
-            {
-              type: "column",
-              yValueFormatString: "#,##0 lbs",
-              dataPoints: [
-                { label: "January", y: 200 },
-                { label: "February", y: 250 },
-                { label: "March", y: 300 },
-                { label: "April", y: 350 },
-                { label: "May", y: 400 },
-                { label: "June", y: 450 },
-                { label: "July", y: 500 },
-                { label: "August", y: 550 },
-                { label: "September", y: 600 },
-                { label: "October", y: 650 },
-                { label: "November", y: 700 },
-                { label: "December", y: 750 },
-              ],
-            },
-          ],
-        });
-        barChart.render();
+<h2>Total Users: <%= totalUsers %></h2>
+<h2>Total Donations: <%= totalDonations %></h2>
 
-        // Pie Chart
-        var pieChart = new CanvasJS.Chart("pieChartContainer", {
-          animationEnabled: true,
-          title: {
-            text: "Donation Distribution by Category",
-          },
-          data: [
-            {
-              type: "pie",
-              startAngle: 240,
-              yValueFormatString: '##0.00"%"',
-              indexLabel: "{label} {y}",
-              dataPoints: [
-                { y: 35, label: "Vegetables" },
-                { y: 25, label: "Fruits" },
-                { y: 20, label: "Grains" },
-                { y: 15, label: "Canned Goods" },
-                { y: 5, label: "Others" },
-              ],
-            },
-          ],
-        });
-        pieChart.render();
-      };
-    </script>
-  </div>
+<!-- <h2>Top Donors:</h2>
+<ul>
+    <% topDonors.forEach(user => { %>
+        <li><%= user.name %> - <%= user.donations.length %> donations</li>
+    <% }); %>
+</ul> -->
+
+<h2>All Users:</h2>
+<ul>
+    <% users.forEach(user => { %>
+        <li><%= user.name %> - <%= user.donations.length %> donations</li>
+    <% }); %>
+</ul>
+
+
+<h2>Accepted Donations: <%= acceptedDonations %></h2>
+<h2>Rejected Donations: <%= rejectedDonations %></h2>
+<h2>Pending Donations: <%= pendingDonations %></h2>
+<br><br><br><br>
 </div>
+</div>
+
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<script>
+  window.onload = function () {
+    // Bar Chart
+    var barChart = new CanvasJS.Chart("barChartContainer", {
+      animationEnabled: false,
+      title: {
+        text: "Monthly Donations",
+      },
+      axisY: {
+        title: "Donations",
+      },
+      data: [
+        {
+          type: "spline",
+          yValueFormatString: "#,##0 Donations",
+          dataPoints: [
+            { label: "January", y: <%= monthlyDonations[1] %> },
+            { label: "February", y: <%= monthlyDonations[2] %> },
+            { label: "March", y: <%= monthlyDonations[3] %> },
+            { label: "April", y: <%= monthlyDonations[4] %> },
+            { label: "May", y: <%= monthlyDonations[5] %> },
+            { label: "June", y: <%= monthlyDonations[6] %> },
+            { label: "July", y: <%= monthlyDonations[7] %> },
+            { label: "August", y: <%= monthlyDonations[8] %> },
+            { label: "September", y: <%= monthlyDonations[9] %> },
+            { label: "October", y: <%= monthlyDonations[10] %> },
+            { label: "November", y: <%= monthlyDonations[11] %> },
+            { label: "December", y: <%= monthlyDonations[12] %> }
+          ],
+        },
+      ],
+    });
+    barChart.render();
+
+    
+  };
+</script>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->
 <% include ./partials/footer.ejs %>
+
+
+<style>
+.chartContainer {
+  height: 250px;
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 0; /* Remove bottom margin */
+}
+</style>

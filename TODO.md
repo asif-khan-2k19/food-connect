@@ -1,6 +1,14 @@
 terms and conditions rectify + integrate ✅
 
 Analytics frontend + backend 
+    - total users
+    - total donations
+    - top donors
+    - all users
+    - search user
+    - donation month graph
+
+report a problem
 
 Falsh messages during authentication✅
 
