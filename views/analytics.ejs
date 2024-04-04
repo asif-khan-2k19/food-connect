@@ -7,7 +7,6 @@ let totalDonations = 0;
 let acceptedDonations = 0;
 let rejectedDonations = 0;
 let pendingDonations = 0;
-let donationMonths = {};
 
 var monthlyDonations = new Array(13).fill(0); 
 
@@ -59,31 +58,66 @@ let topDonors = users.sort((a, b) => b.donations.length - a.donations.length).sl
 <div class="container">
   <div class="scroll-area">
     
-    <div class="chartContainer" id="barChartContainer"></div>
-
-<h2>Total Users: <%= totalUsers %></h2>
-<h2>Total Donations: <%= totalDonations %></h2>
-
-<!-- <h2>Top Donors:</h2>
-<ul>
-    <% topDonors.forEach(user => { %>
-        <li><%= user.name %> - <%= user.donations.length %> donations</li>
-    <% }); %>
-</ul> -->
-
-<h2>All Users:</h2>
-<ul>
-    <% users.forEach(user => { %>
-        <li><%= user.name %> - <%= user.donations.length %> donations</li>
-    <% }); %>
-</ul>
+    <div class="users-donations">
+      <div class="child">
+        <h5>Total Users</h5>
+        <h2><%= totalUsers %></h2>
+      </div>
+      <div class="child">
+        <h5>Total Donations</h5>
+        <h2><%= totalDonations %></h2>
+      </div>
+    </div>
 
 
-<h2>Accepted Donations: <%= acceptedDonations %></h2>
-<h2>Rejected Donations: <%= rejectedDonations %></h2>
-<h2>Pending Donations: <%= pendingDonations %></h2>
-<br><br><br><br>
-</div>
+    <p>Donations</p>
+    <div class="donation-types">
+      <div class="child">
+        <h5>Accepted</h5>
+        <h2><%= acceptedDonations %></h2>
+      </div>
+      <div class="child">
+        <h5>Rejected</h5>
+        <h2><%= rejectedDonations %></h2>
+      </div>
+      <div class="child">
+        <h5>Pending</h5>
+        <h2><%= pendingDonations %></h2>
+      </div>
+    </div>
+
+    <p>Donation Details</p>
+    <div class="donation-graph">
+      <div class="chartContainer" id="barChartContainer"></div>
+    </div>
+
+    <br>
+    <p>All users</p>
+    <div class="users-table-head">
+      <p>Username</p>
+      <p>Donations</p>
+    </div>
+    <div class="users-table">
+      <ol>
+        <% users.forEach(user => { %>
+          <div class="user-cells">
+            <div class="user-name">
+              
+             <a href="#"><%= user.username %></a>
+             <!-- <a href="/add-reviews/<%= user._id %>"><%= user.username %></a> -->
+              
+            </div>
+              <div class="user-donation">
+                <h4><%= user.donations.length %></h4>
+              </div>
+            </div>
+        <% }); %>
+      </ol>
+    </div>
+    
+
+    <br><br><br>
+  </div>
 </div>
 
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
@@ -91,7 +125,7 @@ let topDonors = users.sort((a, b) => b.donations.length - a.donations.length).sl
   window.onload = function () {
     // Bar Chart
     var barChart = new CanvasJS.Chart("barChartContainer", {
-      animationEnabled: false,
+      animationEnabled: true,
       title: {
         text: "Monthly Donations",
       },
@@ -128,13 +162,3 @@ let topDonors = users.sort((a, b) => b.donations.length - a.donations.length).sl
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->
 <% include ./partials/footer.ejs %>
-
-
-<style>
-.chartContainer {
-  height: 250px;
-  width: 300px;
-  margin-top: 20px;
-  margin-bottom: 0; /* Remove bottom margin */
-}
-</style>

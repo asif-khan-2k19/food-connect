@@ -3,6 +3,7 @@ terms and conditions rectify + integrate ✅
 Analytics frontend + backend 
     - total users
     - total donations
+    - accepted, rejected, pending donations
     - top donors
     - all users
     - search user
