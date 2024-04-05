@@ -102,15 +102,12 @@ let topDonors = users.sort((a, b) => b.donations.length - a.donations.length).sl
         <% users.forEach(user => { %>
           <div class="user-cells">
             <div class="user-name">
-              
-             <a href="#"><%= user.username %></a>
-             <!-- <a href="/add-reviews/<%= user._id %>"><%= user.username %></a> -->
-              
+              <a href="/user/<%= user._id %>"><%= user.username %></a>
             </div>
-              <div class="user-donation">
-                <h4><%= user.donations.length %></h4>
-              </div>
+            <div class="user-donation">
+              <h4><%= user.donations.length %></h4>
             </div>
+          </div>
         <% }); %>
       </ol>
     </div>

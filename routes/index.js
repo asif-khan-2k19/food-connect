@@ -182,6 +182,12 @@ router.get("/profile", isLoggedin, async function (req, res, next) {
   res.render("profile", { user: user });
 });
 
+router.get("/user/:id", isLoggedin, async function (req, res, next) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  const singleUser = await userModel.findOne({ _id: req.params.id });
+  res.render("user", { user: user, singleUser: singleUser });
+});
+
 router.post("/register", function (req, res) {
   const userData = new userModel({
     username: req.body.username,

@@ -42,7 +42,8 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep
         <img src="https://source.unsplash.com/random/500x300/?food" alt="">
     </div>
     <div class="donation-details">
-      <h2><%= food.donatedBy.name %></h2>
+      <!-- <a href="/user/<%= user._id %>"><%= food.donatedBy.name %></a> -->
+      <h2><a href="/user/<%= food.donatedBy._id %>" style="color: black; font-size: 24px;"><%= food.donatedBy.name %></a></h2>
       <h5 style="color: #2e2e2e; margin-top: -5px;">🍽️ <%= food.donatedBy.from %></h5>
       <p>Pickup details</p>
       <div class="pickup-details">

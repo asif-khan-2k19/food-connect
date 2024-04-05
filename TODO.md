@@ -11,6 +11,6 @@ https://cdn.dribbble.com/userupload/12453992/file/original-a7a00627e6bc4d23672f8
 
 reviews frontend connection with backend ✅
 
-Profile picture using multer 
+Profile picture using multer ✅
 
 status on home page ✅
