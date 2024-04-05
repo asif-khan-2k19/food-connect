@@ -2,8 +2,8 @@ var express = require("express");
 var router = express.Router();
 var userModel = require("./users");
 var foodModel = require("./food");
-
 var passport = require("passport");
+var upload = require("./multer");
 
 var localStrategy = require("passport-local");
 
@@ -76,6 +76,13 @@ router.post("/updateprofile", isLoggedin, async function (req, res, next) {
   await user.save();
 
   res.redirect("/profile");
+});
+
+router.post("/fileupload", isLoggedin , upload.single("image"), async function (req, res, next) {
+  const user = await userModel.findOne({username : req.session.passport.user});
+  user.profilePicture = req.file.filename;
+  await user.save();
+  res.redirect('/profile');
 });
 
 router.get("/donation/:id", isLoggedin, async function (req, res, next) {

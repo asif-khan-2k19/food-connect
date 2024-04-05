@@ -1,15 +1,8 @@
 terms and conditions rectify + integrate ✅
 
-Analytics frontend + backend 
-    - total users
-    - total donations
-    - accepted, rejected, pending donations
-    - top donors
-    - all users
-    - search user
-    - donation month graph
+Analytics frontend + backend ✅
 
-report a problem
+report a problem 
 
 Falsh messages during authentication✅
 
@@ -18,6 +11,6 @@ https://cdn.dribbble.com/userupload/12453992/file/original-a7a00627e6bc4d23672f8
 
 reviews frontend connection with backend ✅
 
-Profile picture using multer
+Profile picture using multer 
 
 status on home page ✅
