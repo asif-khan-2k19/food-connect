@@ -10,17 +10,18 @@ var localStrategy = require("passport-local");
 passport.use(new localStrategy(userModel.authenticate()));
 
 router.get("/", function (req, res, next) {
-  var falshError = req.flash("error");
-  res.render("login", { err: falshError });
+  var flashError = req.flash("error");
+  res.render("login", { err: flashError });
 });
 
 router.get("/signup", function (req, res, next) {
-  var falshError = req.flash("error");
-  res.render("signup", { err: falshError });
+  var flashError = req.flash("error");
+  res.render("signup", { err: flashError });
 });
 
 router.get("/login", function (req, res, next) {
-  res.render("login");
+  var flashError = req.flash("error");
+  res.render("login", { err: flashError });
 });
 
 router.get("/home", isLoggedin, async function (req, res, next) {
@@ -194,12 +195,16 @@ router.post("/register", function (req, res) {
     email: req.body.email,
   });
 
-  userModel.register(userData, req.body.password).then(function () {
+  userModel.register(userData, req.body.password, function (err) {
+    if (err) {
+      console.error("Username already exists", err);
+      return res.redirect('/signup');
+    }
+
     passport.authenticate("local")(req, res, function () {
       res.redirect("/editprofile");
     });
   });
-  console.log(userData);
 });
 
 router.post(

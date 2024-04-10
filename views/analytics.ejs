@@ -1,5 +1,19 @@
 <% include ./partials/header.ejs %>
 
+<!-- <script>
+  function handleNotification(username) {
+    Notification.requestPermission().then((result) => {
+      console.log("permission result: " + result);
+      if (result === "granted") {
+        let notif = new Notification("New donation", {
+          body: "Food donation from "+ username,
+          icon: "/images/uploads/default_profile.png",
+          requireInteraction: true,
+        });
+      }
+    });
+  }
+</script> -->
 <%
 // Assuming 'users' and 'foods' are obtained from the server
 let totalUsers = users.length;
