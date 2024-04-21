@@ -1,22 +1,8 @@
 <% include ./partials/header.ejs %>
 
-<!-- <script>
-  function handleNotification(username) {
-    Notification.requestPermission().then((result) => {
-      console.log("permission result: " + result);
-      if (result === "granted") {
-        let notif = new Notification("New donation", {
-          body: "Food donation from "+ username,
-          icon: "/images/uploads/default_profile.png",
-          requireInteraction: true,
-        });
-      }
-    });
-  }
-</script> -->
 <%
 // Assuming 'users' and 'foods' are obtained from the server
-let totalUsers = users.length;
+let totalUsers = users.length ;
 let totalDonations = 0;
 let acceptedDonations = 0;
 let rejectedDonations = 0;
@@ -134,7 +120,7 @@ let topDonors = users.sort((a, b) => b.donations.length - a.donations.length).sl
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 <script>
   window.onload = function () {
-    // Bar Chart
+
     var barChart = new CanvasJS.Chart("barChartContainer", {
       animationEnabled: true,
       title: {
