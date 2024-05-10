@@ -439,6 +439,16 @@ a {
   margin-bottom: 10px;
 }
 
+.faq-container1, .faq-container2, .faq-container3, .faq-container4, .faq-container5{
+  cursor: pointer;
+}
+
+.faq-ans1, .faq-ans2, .faq-ans3, .faq-ans4, .faq-ans5{
+  color: rgb(0, 132, 255);
+  padding-left: 12px;
+  font-size: 13px;
+}
+
 /* review page */
 
 .star-bg {
@@ -606,3 +616,4 @@ a {
   border:1px solid #3e3e3edf;
   color: #3e3e3edf;
 }
+

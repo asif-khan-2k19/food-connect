@@ -20,26 +20,69 @@
 <br />
 
 <div class="container" id="help">
-      <div class="scroll-area">
-        <div>
-          <p>Frequently Asked Questions</p>
-          <h5>1. How can I donate food?</h5>
-          <h5>2. What types of food items do you accept?</h5>
-          <h5>3. Can I donate money instead of food?</h5>
-          <h5>4. How can I volunteer?</h5>
-          <h5>5. Do you provide food assistance to individuals in need?</h5>
-          
-          <p>Contact Us:</p>
-          <h5>Email: foodconnect@gmail.com<br />
-              Phone: +91 9321167889
-          </h5>
-
-          <p>Terms Of Services</p>
-          <h5>Read our <a href="/terms" style="color: rgb(0, 132, 255);">Terms and Conditions</a></h5>
-        </div>
+  <div class="scroll-area">
+    <div>
+      <p>Frequently Asked Questions</p>
+      <div class="faq-container1">
+        <h5>1. How can I donate food?</h5>
+        <div class="faq-ans1">Ans 1</div>
       </div>
+
+      <div class="faq-container2">
+        <h5>2. What types of food items do you accept?</h5>
+        <div class="faq-ans2">Ans 2</div>
+      </div>
+
+      <div class="faq-container3">
+        <h5>3. Can I donate money instead of food?</h5>
+        <div class="faq-ans3">Ans 3</div>
+      </div>
+
+      <div class="faq-container4">
+        <h5>4. How can I volunteer?</h5>
+        <div class="faq-ans4">Ans 4</div>
+      </div>
+      
+      <div class="faq-container5">
+        <h5>5. Do you provide food assistance to individuals in need?</h5>
+        <div class="faq-ans5">hello1</div>
+      </div>
+      <p>Contact Us:</p>
+      <h5>
+        Email: foodconnect@gmail.com<br />
+        Phone: +91 1234567890
+      </h5>
+
+      <p>Terms Of Services</p>
+      <h5>
+        Read our
+        <a href="/terms" style="color: rgb(0, 132, 255)"
+          >Terms and Conditions</a
+        >
+      </h5>
+    </div>
+  </div>
 </div>
 
+<script>
+  for (let i = 1; i <= 5; i++) {
+    const faq_ans = document.querySelector(`.faq-ans${i}`);
+    const faq_header = document.querySelector(`.faq-container${i} h5`);
+    let flag = 0;
+
+    faq_ans.style.display = "none"; // Initially hide all answers
+
+    faq_header.addEventListener("click", function () {
+      if (flag === 0) {
+        faq_ans.style.display = "block";
+        flag = 1;
+      } else {
+        faq_ans.style.display = "none";
+        flag = 0;
+      }
+    });
+  }
+</script>
 <!-- Navigation bar -->
 <% include ./partials/navigation.ejs %>
 <!-- Footer -->
