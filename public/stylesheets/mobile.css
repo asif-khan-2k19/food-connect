@@ -441,12 +441,15 @@ a {
 
 .faq-container1, .faq-container2, .faq-container3, .faq-container4, .faq-container5{
   cursor: pointer;
+  padding-right: 15px;
 }
 
 .faq-ans1, .faq-ans2, .faq-ans3, .faq-ans4, .faq-ans5{
   color: rgb(0, 132, 255);
   padding-left: 12px;
   font-size: 13px;
+  margin-bottom: 7px;
+  text-align: justify;
 }
 
 /* review page */
